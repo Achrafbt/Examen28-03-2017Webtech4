@@ -51,4 +51,18 @@ module.exports = function(app) {
 					  return res.redirect('/index');
 				});
 	});
+
+	// Get save form for search quote
+	app.get('/search', function(req, res) {
+					res.render('search');
+	});
+
+	// view searched quote
+	app.post("/search", function(req, res) {
+		db.collection('quotes').find().toArray(function (err, result) {
+	    if (err) throw err
+			res.render('/search');
+	    console.log(result)
+	  });
+
 };

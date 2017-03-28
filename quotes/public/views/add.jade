@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div.well
+    h1 Add new quote
+    br
+    form(action='add' method='post')
+      table
+        tr
+          td
+            label Author :
+          td
+            input(type='text' name='author' size=35)
+        tr
+          td
+            label Quote :
+          td
+            input(type='text' name='quote' size=100)
+          td
+          td(align='right')
+            input(type='Submit', value='Save')
