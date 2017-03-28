@@ -12,7 +12,7 @@ r = redis.StrictRedis(host='localhost', port=6379, db=0)
 # Create your views here.
 def question_index(request):
 	return render(request, "question_index.html")
-
+	
 def question_create(request):
 	form = QuestionForm(request.POST or None, request.FILES or None)
 	#If the request is a POST then the form would be valid
@@ -25,7 +25,7 @@ def question_create(request):
 		"form":form
 	}
 	return render(request, "question_create.html", context)
-	
+
 def question_present(request, id=None):
 	#If no specific id is given get a random row
 	queryRow = 0
@@ -53,7 +53,7 @@ def question_submit(request, id, answer):
 		queryRow.noCount = queryRow.noCount + 1
 		queryRow.currentAnswers = queryRow.currentAnswers + 1
 		queryRow.save()
-	
+
 	#Check if the maximum number of answers have been reached
 	if queryRow.currentAnswers >= queryRow.totalAnswers:
 		#Add to the answered table
@@ -63,20 +63,9 @@ def question_submit(request, id, answer):
 							noCount = queryRow.noCount)
 		insertRow.save()
 		queryRow.delete()
-	
+
 	context = {
 		"answer": answer,
 		"queryRow": queryRow,
 	}
 	return render(request, "question_submit.html", context)
-
-
-
-
-	
-	
-	
-		
-		
-
-	
