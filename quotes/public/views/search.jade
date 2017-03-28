@@ -2,5 +2,7 @@ extends layout
 
 block content
   div.well
-    h2 Quote : #{quotes.quote}
+  ul
+    each quote in quotes
+      li: a(href='/quotes/' + quote._id) #{quote.author}
     a(href='/index') Overview

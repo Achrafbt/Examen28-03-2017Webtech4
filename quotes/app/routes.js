@@ -59,10 +59,12 @@ module.exports = function(app) {
 
 	// view searched quote
 	app.post("/search", function(req, res) {
-		db.collection('quotes').find().toArray(function (err, result) {
-	    if (err) throw err
-			res.render('/search');
-	    console.log(result)
+		Quote.find({quote: req.body.quote}, function(err, quotes) {
+					if (err) {
+							throw err;
+					}
+			return res.render('search', {quote: quotes[0]});
+	    console.log(quotes)
 	  });
-
+});
 };
